@@ -21,4 +21,12 @@ public class Simulacion {
         Date fecha = new Date(ran.nextInt(2050)+2000, ran.nextInt(11)+1, ran.nextInt(29)+1);       
         return fecha;
     }
+    @RequestMapping(value="/{nit}", method = RequestMethod.GET)
+    public String test1(@PathVariable String nit){
+        return "Hola Mundo test 1";
+    }
+    @RequestMapping(value="/", method = RequestMethod.GET)
+    public String test2(){
+        return "Hola Mundo test 2";
+    }
 }

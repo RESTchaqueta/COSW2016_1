@@ -5,28 +5,30 @@
  */
 package com.simulador;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/simulador")
+@RequestMapping("/peticiones")
 public class Simulacion {
+
     @RequestMapping(value="/invima/{nit}", method = RequestMethod.GET)
-    public Date consultarRegistroSanidadFecha(@PathVariable String nit){
+    public String consultarRegistroSanidadFecha(@PathVariable String nit){
         Random ran =  new Random();
         Date fecha = new Date(ran.nextInt(2050)+2000, ran.nextInt(11)+1, ran.nextInt(29)+1);       
-        return fecha;
+        SimpleDateFormat sd= new SimpleDateFormat("dd-MM-yyyy");
+        return sd.format(fecha);
     }
-    @RequestMapping(value="/{nit}", method = RequestMethod.GET)
-    public String test1(@PathVariable String nit){
-        return "Hola Mundo test 1";
-    }
+    
     @RequestMapping(value="/", method = RequestMethod.GET)
-    public String test2(){
-        return "Hola Mundo test 2";
+    public ResponseEntity<?> consultaX() {       
+        return new ResponseEntity<>("REST API working. Echo:",HttpStatus.ACCEPTED);
     }
 }

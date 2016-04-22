@@ -5,9 +5,6 @@
  */
 package com.simulador;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Random;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,11 +17,10 @@ import org.springframework.web.bind.annotation.RestController;
 public class Simulacion {
 
     @RequestMapping(value="/invima/{nit}", method = RequestMethod.GET)
-    public String consultarRegistroSanidadFecha(@PathVariable String nit){
-        Random ran =  new Random();
-        Date fecha = new Date(ran.nextInt(2050)+2000, ran.nextInt(11)+1, ran.nextInt(29)+1);       
-        SimpleDateFormat sd= new SimpleDateFormat("dd-MM-yyyy");
-        return sd.format(fecha);
+    public Invima consultarRegistroSanidadFecha(@PathVariable String nit){
+        String abcdario = "qwertyuiopasdfghjklzxcvbnm";
+        //if(nit.length()==11)
+        return new Invima(nit);
     }
     
     @RequestMapping(value="/", method = RequestMethod.GET)

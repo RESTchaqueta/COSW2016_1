@@ -20,17 +20,17 @@ public class Simulacion {
     public Invima consultarRegistroSanidadFecha(@PathVariable String nit){
         String abcdario = "1234567890";
         int i=0;
-        for(; i<abcdario.length() && abcdario.contains(nit.charAt(i)+""); i++);
-        if(nit.length()==11 && i==abcdario.length() && nit.charAt(10)=='.')
-            return new Invima(nit);
-        else return null;
+        for(; i<nit.length() && abcdario.contains(nit.charAt(i)+""); i++);
+        Invima invi = null;
+        if(nit.length()==11 && i==abcdario.length() && nit.charAt(10)=='.')invi=new Invima(nit);
+        return invi;
     }
     
     @RequestMapping(value="/camaracomercio/{nit}", method = RequestMethod.GET)
     public CamaraComercio consultarNIT(@PathVariable String nit) {       
         String abcdario = "1234567890";
         int i=0;
-        for(; i<abcdario.length()-2 && abcdario.contains(nit.charAt(i)+""); i++);
+        for(; i<nit.length()-2 && abcdario.contains(nit.charAt(i)+""); i++);
         if(nit.length()==11 && i==abcdario.length() && nit.charAt(10)=='.')
             return new CamaraComercio(nit);
         else return null;
@@ -40,7 +40,7 @@ public class Simulacion {
     public PasarelaPagos realizarPago(@PathVariable String tarj, @PathVariable Integer monto) {       
         String abcdario = "1234567890";
         int i=0;
-        for(; i<abcdario.length() && abcdario.contains(tarj.charAt(i)+""); i++);
+        for(; i<tarj.length() && abcdario.contains(tarj.charAt(i)+""); i++);
         if(tarj.length()>12 && tarj.length()<20 && i==abcdario.length())
             return new PasarelaPagos("", 2);
         else return null;

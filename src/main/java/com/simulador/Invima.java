@@ -22,7 +22,6 @@ public class Invima {
         this.nit=nit;
         this.vencimiento = new Date(Integer.parseInt(nit.substring(0, 4))%65+1950, Integer.parseInt(nit.substring(0, 4))%11+1, Integer.parseInt(nit.substring(0, 4))%29+1);
         this.estadoRegistro = ((Integer.parseInt(nit.substring(0, 4))%65+1950)<2015)?"Vencidos":"Vigentes";
-        
         this.modalidad = "Reposteria";
     }
 

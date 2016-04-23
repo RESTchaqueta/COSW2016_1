@@ -7,12 +7,7 @@ package com.simulador;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Random;
 
-/**
- *
- * @author redes
- */
 public class Invima {
     
     public Integer expediente;	
@@ -23,15 +18,11 @@ public class Invima {
     public ArrayList<String> er=new ArrayList<>();
 
     public Invima(String nit) {
-        Random ran =  new Random();
-        this.expediente = ran.nextInt(99998999)+1000;
+        this.expediente = Integer.parseInt(nit.substring(0, 8));
         this.nit=nit;
-        for(int i=0; i<5; i++){
-            er.add("Vigentes");
-            er.add("Vencidos");
-        }
-        this.estadoRegistro = er.get(ran.nextInt(er.size()));
-        this.vencimiento = (this.estadoRegistro.equals("Vigentes"))?new Date(ran.nextInt(2050)+2000, ran.nextInt(11)+1, ran.nextInt(29)+1):new Date(ran.nextInt(2050)+2000, ran.nextInt(11)+1, ran.nextInt(29)+1);
+        this.vencimiento = new Date(Integer.parseInt(nit.substring(0, 4))%65+1950, Integer.parseInt(nit.substring(0, 4))%11+1, Integer.parseInt(nit.substring(0, 4))%29+1);
+        this.estadoRegistro = ((Integer.parseInt(nit.substring(0, 4))%65+1950)<2015)?"Vencidos":"Vigentes";
+        
         this.modalidad = "Reposteria";
     }
 

@@ -1,0 +1,80 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.simulador;
+
+import java.util.Date;
+import java.util.Random;
+
+public class PasarelaPagos {
+    
+    public String tarjetaCredito;
+    public String codTransaccion;
+    public Integer monto;
+    public Integer interes;
+    public Date fechaTransaccion;
+    public Integer costoTotal;
+
+    public PasarelaPagos(String tarjetaCredito, Integer monto) {
+        Random ran=new Random();
+        this.tarjetaCredito = tarjetaCredito;
+        this.codTransaccion = ((ran.nextInt(999999999)%1000000)+100000000)+"";
+        this.monto = monto;
+        this.interes = ran.nextInt(10);
+        this.fechaTransaccion = new Date();
+        this.costoTotal = monto+(monto*this.interes);
+    }
+
+    public String getTarjetaCredito() {
+        return tarjetaCredito;
+    }
+
+    public void setTarjetaCredito(String tarjetaCredito) {
+        this.tarjetaCredito = tarjetaCredito;
+    }
+
+    public String getCodTransaccion() {
+        return codTransaccion;
+    }
+
+    public void setCodTransaccion(String codTransaccion) {
+        this.codTransaccion = codTransaccion;
+    }
+
+    public Integer getMonto() {
+        return monto;
+    }
+
+    public void setMonto(Integer monto) {
+        this.monto = monto;
+    }
+
+    public Integer getInteres() {
+        return interes;
+    }
+
+    public void setInteres(Integer interes) {
+        this.interes = interes;
+    }
+
+    public Date getFechaTransaccion() {
+        return fechaTransaccion;
+    }
+
+    public void setFechaTransaccion(Date fechaTransaccion) {
+        this.fechaTransaccion = fechaTransaccion;
+    }
+
+    public Integer getCostoTotal() {
+        return costoTotal;
+    }
+
+    public void setCostoTotal(Integer costoTotal) {
+        this.costoTotal = costoTotal;
+    }
+
+    
+    
+}

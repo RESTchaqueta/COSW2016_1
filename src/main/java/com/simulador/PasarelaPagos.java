@@ -16,12 +16,14 @@ public class PasarelaPagos {
     public Integer interes;
     public Date fechaTransaccion;
     public Integer costoTotal;
+    public String cuentaBancaria;
 
-    public PasarelaPagos(String tarjetaCredito, Integer monto) {
+    public PasarelaPagos(String tarjetaCredito, Integer monto, String cuentaBancaria) {
         Random ran=new Random();
         this.tarjetaCredito = tarjetaCredito;
         this.codTransaccion = ((ran.nextInt(999999999)%1000000)+100000000)+"";
         this.monto = monto;
+        this.cuentaBancaria = cuentaBancaria;
         this.interes = ran.nextInt(10);
         this.fechaTransaccion = new Date();
         this.costoTotal = monto+(monto*this.interes);
@@ -75,6 +77,13 @@ public class PasarelaPagos {
         this.costoTotal = costoTotal;
     }
 
-    
-    
+    public String getCuentaBancaria() {
+        return cuentaBancaria;
+    }
+
+    public void setCuentaBancaria(String cuentaBancaria) {
+        this.cuentaBancaria = cuentaBancaria;
+    }
+
+      
 }

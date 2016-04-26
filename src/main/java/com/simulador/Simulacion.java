@@ -33,17 +33,20 @@ public class Simulacion {
         int i=0;
         for(; i<nit.length()-2 && abcdario.contains(nit.charAt(i)+""); i++);
         CamaraComercio cc = null;
-        if(nit.length()==11 && i==nit.length()-2 && nit.charAt(9)=='-')cc=new CamaraComercio(nit);
+        if(nit.length()==11 && i==nit.length()-2 && nit.charAt(9)=='-' && abcdario.contains(nit.charAt(10)+"") && (Integer.parseInt(nit.substring(0, 3))/2*2==Integer.parseInt(nit.substring(0, 3))))
+            cc=new CamaraComercio(nit);
         return cc;
     }
     
-    @RequestMapping(value="/pasarelapagos/{tarj}/{monto}", method = RequestMethod.GET)
-    public PasarelaPagos realizarPago(@PathVariable String tarj, @PathVariable Integer monto) {       
+    @RequestMapping(value="/pasarelapagos/{tarj}/{cuenta}/{monto}", method = RequestMethod.GET)
+    public PasarelaPagos realizarPago(@PathVariable String tarj, @PathVariable String cuenta, @PathVariable Integer monto) {       
         String abcdario = "1234567890";
         int i=0;
         for(; i<tarj.length() && abcdario.contains(tarj.charAt(i)+""); i++);
-        if(tarj.length()>12 && tarj.length()<20 && i==tarj.length())
-            return new PasarelaPagos("", 2);
+        int j=0;
+        for(; j<cuenta.length() && abcdario.contains(cuenta.charAt(i)+""); j++);
+        if(tarj.length()>12 && tarj.length()<20 && i==tarj.length() && cuenta.length()==20 && j==cuenta.length())
+            return new PasarelaPagos(tarj, 2, cuenta);
         else return null;
     }    
     
@@ -54,16 +57,20 @@ public class Simulacion {
         else return "Normal";
     }    
     
+    @RequestMapping(value="/proveedor/{nit}", method = RequestMethod.GET)
+    public Proveedor consultaCliente(@PathVariable String nit) {       
+        return new Proveedor();
+    }
     
     @RequestMapping(value="/", method = RequestMethod.GET)
     public ResponseEntity<?> consultaX() {       
-        PasarelaPagos as=new PasarelaPagos("", 2);
+        
         return new ResponseEntity<>("REST API working. Echo:",HttpStatus.ACCEPTED);
     }
     
     @RequestMapping(value="", method = RequestMethod.GET)
     public ResponseEntity<?> consultaY() {       
-        PasarelaPagos as=new PasarelaPagos("", 2);
+        
         return new ResponseEntity<>("REST API working. Echo:",HttpStatus.ACCEPTED);
     }
     

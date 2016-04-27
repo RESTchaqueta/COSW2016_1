@@ -6,6 +6,7 @@
 package com.simulador;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Proveedor {
     
@@ -14,13 +15,31 @@ public class Proveedor {
     public String ubicacion;
     public String nit;
 
-    public Proveedor() {
-    }
-
-    public Proveedor(String nombre, ArrayList<Producto> productos, String ubicacion, String nit) {
-        this.nombre = nombre;
-        this.productos = productos;
-        this.ubicacion = ubicacion;
+    public Proveedor(String nit) {
+        ArrayList<String> nombres=new ArrayList<>();
+        nombres.add ("Asociados");
+        nombres.add ("Sociedad por Acciones Simplificada");
+        nombres.add ("Sociedad Limitada");
+        nombres.add ("Empresa Unipersonal");
+        nombres.add ("Sociedad Anonima");
+        nombres.add ("Sociedad Colectiva");
+        nombres.add ("Sociedad Comandita Simple");
+        nombres.add ("Sociedad Comandita por Acciones");
+        nombres.add ("Empresa Asociativa de Trabajo");
+        this.nombre = nombres.get((new Random()).nextInt(nombres.size()))+" "+(new Random()).nextInt(100);
+        this.productos = new ArrayList<>();
+        for(int i=0; i<50; i++)this.productos.add(new Producto());
+        ArrayList<String> ciudades=new ArrayList<>();
+        ciudades.add ("Medellin");
+        ciudades.add ("Cali");
+        ciudades.add ("Barranquilla");
+        ciudades.add ("Cartagena");
+        ciudades.add ("Bogota");
+        ciudades.add ("Cucuta");
+        ciudades.add ("Bucaramanga");
+        ciudades.add ("Pereira");
+        ciudades.add ("Manizales");
+        this.ubicacion = ciudades.get((new Random()).nextInt(ciudades.size()));
         this.nit = nit;
     }
 

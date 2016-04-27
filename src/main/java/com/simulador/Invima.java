@@ -5,7 +5,7 @@
  */
 package com.simulador;
 
-import java.util.ArrayList;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Invima {
@@ -13,15 +13,16 @@ public class Invima {
     public Integer expediente;	
     public String nit;
     public String estadoRegistro;
-    public Date vencimiento;	
+    public String vencimiento;	
     public String modalidad;	
-    public ArrayList<String> er=new ArrayList<>();
 
     public Invima(String nit) {
         this.expediente = Integer.parseInt(nit.substring(0, 8));
         this.nit=nit;
-        this.vencimiento = new Date(Integer.parseInt(nit.substring(0, 4))%65+1950, Integer.parseInt(nit.substring(0, 4))%11+1, Integer.parseInt(nit.substring(0, 4))%29+1);
-        this.estadoRegistro = ((Integer.parseInt(nit.substring(0, 4))%65+1950)<2015)?"Vencidos":"Vigentes";
+        SimpleDateFormat formato=new SimpleDateFormat("dd/MM/yyyy");
+        Date fecha=new Date((Integer.parseInt(nit.substring(0, 6))%40)+100, Integer.parseInt(nit.substring(0, 4))%11+1, Integer.parseInt(nit.substring(0, 4))%29+1);
+        this.vencimiento = formato.format(fecha);
+        this.estadoRegistro = (fecha.getTime()<(new Date()).getTime())?"Vencidos":"Vigentes";
         this.modalidad = "Reposteria";
     }
 
@@ -49,11 +50,11 @@ public class Invima {
         this.estadoRegistro = estadoRegistro;
     }
 
-    public Date getVencimiento() {
+    public String getVencimiento() {
         return vencimiento;
     }
 
-    public void setVencimiento(Date vencimiento) {
+    public void setVencimiento(String vencimiento) {
         this.vencimiento = vencimiento;
     }
 

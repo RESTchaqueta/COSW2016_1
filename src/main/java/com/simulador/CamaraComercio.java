@@ -5,13 +5,14 @@
  */
 package com.simulador;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
 public class CamaraComercio {
     
     public String nit;
-    public Date fechaInscripcion;
+    public String fechaInscripcion;
     public String lugarInscripcion;
     
     public CamaraComercio(String nit) {
@@ -26,8 +27,9 @@ public class CamaraComercio {
         ciudades.add ("Bucaramanga");
         ciudades.add ("Pereira");
         ciudades.add ("Manizales");
-        this.lugarInscripcion=ciudades.get(Integer.parseInt(nit.substring(0, 4))%9);
-        this.fechaInscripcion=new Date(Integer.parseInt(nit.substring(0, 4))%65+1950, Integer.parseInt(nit.substring(0, 4))%11+1, Integer.parseInt(nit.substring(0, 4))%29+1);
+        this.lugarInscripcion=ciudades.get(Integer.parseInt(nit.substring(0, 4))%(ciudades.size()));
+        SimpleDateFormat formato=new SimpleDateFormat("dd/MM/yyyy");
+        this.fechaInscripcion=formato.format(new Date((Integer.parseInt(nit.substring(0, 6))%30)+80, Integer.parseInt(nit.substring(0, 4))%11+1, Integer.parseInt(nit.substring(0, 4))%29+1));
     }
 
     public String getNit() {
@@ -38,11 +40,11 @@ public class CamaraComercio {
         this.nit = nit;
     }
 
-    public Date getFechaInscripcion() {
+    public String getFechaInscripcion() {
         return fechaInscripcion;
     }
 
-    public void setFechaInscripcion(Date fechaInscripcion) {
+    public void setFechaInscripcion(String fechaInscripcion) {
         this.fechaInscripcion = fechaInscripcion;
     }
 

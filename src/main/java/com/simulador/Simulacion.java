@@ -24,8 +24,9 @@ public class Simulacion {
             while(i<nit.length()-2 && abcdario.contains(nit.charAt(i)+""))i++;
             if(i==nit.length()-2 && nit.charAt(9)=='-' && abcdario.contains(nit.charAt(10)+""))
                 return new ResponseEntity<>(new Invima(nit),HttpStatus.ACCEPTED);
+            else return new ResponseEntity<>("",HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>("Peticion incorrecta",HttpStatus.ACCEPTED);
+        return new ResponseEntity<>("",HttpStatus.NOT_FOUND);
         
     }
     
@@ -36,11 +37,15 @@ public class Simulacion {
             int i=0;
             while(i<nit.length()-2 && abcdario.contains(nit.charAt(i)+""))i++;
             if(i==nit.length()-2 && nit.charAt(9)=='-' && abcdario.contains(nit.charAt(10)+""))
-                if((Integer.parseInt(nit.charAt(3)+"")/2*2==Integer.parseInt(nit.charAt(3)+"")))
+                if(((Integer.parseInt(nit.charAt(1)+"")/2*2==Integer.parseInt(nit.charAt(1)+""))) 
+                        &&((Integer.parseInt(nit.charAt(2)+"")/2*2==Integer.parseInt(nit.charAt(2)+""))) 
+                        && ((Integer.parseInt(nit.charAt(3)+"")/2*2==Integer.parseInt(nit.charAt(3)+""))) 
+                        && ((Integer.parseInt(nit.charAt(8)+"")/2*2==Integer.parseInt(nit.charAt(8)+""))) 
+                        && ((Integer.parseInt(nit.charAt(10)+"")/2*2==Integer.parseInt(nit.charAt(10)+""))))
                     return new ResponseEntity<>(new CamaraComercio(nit),HttpStatus.ACCEPTED);
-                else return new ResponseEntity<>("El NIT buscado no se encuentra registrado en la base de datos",HttpStatus.ACCEPTED);    
+                else return new ResponseEntity<>("",HttpStatus.NOT_FOUND);    
         }
-        return new ResponseEntity<>("Peticion incorrecta",HttpStatus.ACCEPTED);
+        return new ResponseEntity<>("Peticion incorrecta",HttpStatus.NOT_FOUND);
     }
     
     @RequestMapping(value="/pasarelapagos/{tarj}/{cuenta}/{monto}", method = RequestMethod.GET)
@@ -53,8 +58,8 @@ public class Simulacion {
             while(j<cuenta.length() && abcdario.contains(cuenta.charAt(j)+""))j++;
             if(i==tarj.length() && j==cuenta.length()) 
                 return new ResponseEntity<>(new PasarelaPagos(tarj, monto, cuenta),HttpStatus.ACCEPTED);
-            return new ResponseEntity<>("Peticion incorrecta",HttpStatus.ACCEPTED);
-        }else return new ResponseEntity<>("Peticion incorrecta",HttpStatus.ACCEPTED);
+            return new ResponseEntity<>("",HttpStatus.NOT_FOUND);
+        }else return new ResponseEntity<>("",HttpStatus.NOT_FOUND);
     }    
     
     @RequestMapping(value="/tipocliente/{ced}", method = RequestMethod.GET)
@@ -70,7 +75,7 @@ public class Simulacion {
                 else respuesta="Normal";
             }
         }
-        return new ResponseEntity<>(respuesta,HttpStatus.ACCEPTED);
+        return new ResponseEntity<>("",HttpStatus.NOT_FOUND);
     }    
     
     @RequestMapping(value="/proveedoresysupermecados/{nit}", method = RequestMethod.GET)
@@ -82,7 +87,7 @@ public class Simulacion {
             if(i==nit.length()-2 && nit.charAt(9)=='-' && abcdario.contains(nit.charAt(10)+""))
                 return new ResponseEntity<>(new Proveedor(nit),HttpStatus.ACCEPTED);
         }
-        return new ResponseEntity<>("Peticion incorrecta",HttpStatus.ACCEPTED);
+        return new ResponseEntity<>("",HttpStatus.NOT_FOUND);
     }
     
     @RequestMapping(value="/", method = RequestMethod.GET)

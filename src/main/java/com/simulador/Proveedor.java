@@ -30,6 +30,7 @@ public class Proveedor {
         this.nombre = nombres.get((new Random()).nextInt(nombres.size()))+" "+(new Random()).nextInt(100);
         this.productos = new ArrayList<>();
         for(int i=0; i<50; i++)this.productos.add(new Producto());
+		this.clientes = new ArrayList<>();
         for(int i=0; i<25; i++)this.clientes.add(new Cliente());
         ArrayList<String> ciudades=new ArrayList<>();
         ciudades.add ("Medellin");

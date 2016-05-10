@@ -64,7 +64,7 @@ public class Simulacion {
     
     @RequestMapping(value="/tipocliente/{ced}", method = RequestMethod.GET)
     public ResponseEntity<?> consultaCliente(@PathVariable String ced) {  
-        String respuesta="Peticion incorrecta";
+        String respuesta="";
         if(ced.length()==10){
             String abcdario = "1234567890";
             int i=0;

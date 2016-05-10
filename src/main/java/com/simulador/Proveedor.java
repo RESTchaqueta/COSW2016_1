@@ -11,7 +11,8 @@ import java.util.Random;
 public class Proveedor {
     
     public String nombre;
-    public ArrayList<Producto> productos ;
+    public ArrayList<Producto> productos;
+    public ArrayList<Cliente> clientes;
     public String ubicacion;
     public String nit;
 
@@ -29,6 +30,7 @@ public class Proveedor {
         this.nombre = nombres.get((new Random()).nextInt(nombres.size()))+" "+(new Random()).nextInt(100);
         this.productos = new ArrayList<>();
         for(int i=0; i<50; i++)this.productos.add(new Producto());
+        for(int i=0; i<25; i++)this.clientes.add(new Cliente());
         ArrayList<String> ciudades=new ArrayList<>();
         ciudades.add ("Medellin");
         ciudades.add ("Cali");
@@ -74,6 +76,13 @@ public class Proveedor {
     public void setNit(String nit) {
         this.nit = nit;
     }
-     
-    
+
+    public ArrayList<Cliente> getClientes() {
+        return clientes;
+    }
+
+    public void setClientes(ArrayList<Cliente> clientes) {
+        this.clientes = clientes;
+    }
+        
 }
